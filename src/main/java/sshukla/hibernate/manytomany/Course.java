@@ -24,6 +24,8 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "title", nullable = false, unique = true)
     private String title;
     private String abbreviation;
     private int modules;
