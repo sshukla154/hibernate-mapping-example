@@ -17,16 +17,3 @@ The following guides illustrate how to use some features concretely:
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 * [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-
-### APIs
-
-## Topics Covered:
-1. Mapping
-   - One-To-One
-   - One-To-Many
-   - Many-To-One
-   - Many-To-Many
-2. States in Hibernate
-3. Cache implementation in Hibernate - First and Second level cache in Hibernate
-4. save(), saveOrUpdate(), and persist()
-5. get() and load() 
