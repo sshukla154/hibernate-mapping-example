@@ -1,6 +1,6 @@
 package sshukla.hibernate.service;
 
-import sshukla.hibernate.model.Tutorial;
+import sshukla.hibernate.onetoone.unidirectional.Tutorial;
 
 /**
  * @author 'Seemant Shukla' on '20/09/2022'

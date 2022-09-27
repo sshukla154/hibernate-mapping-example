@@ -1,4 +1,4 @@
-package sshukla.hibernate.onetoone;
+package sshukla.hibernate.onetoone.unidirectional;
 
 import lombok.*;
 
@@ -9,9 +9,11 @@ import java.io.Serializable;
  * @author 'Seemant Shukla' on '20/09/2022'
  */
 
-@Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Setter
+@Getter
 @Entity
 @Table(name = "tutorial", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 public class Tutorial implements Serializable {
@@ -31,5 +33,9 @@ public class Tutorial implements Serializable {
 
     @Column(name = "published")
     private boolean published;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "tutorial_details_id", referencedColumnName = "id")
+    private TutorialDetails tutorialDetails;
 
 }

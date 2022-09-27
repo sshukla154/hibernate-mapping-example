@@ -8,7 +8,12 @@
 
 ## Topics:
 1. Mapping
-    - One-To-One : E.G. Tutorial (`@JsonIgnoreProperties({"hibernateLazyInitializer"})`) and TutorialDetails (`@OneToOne`, `@MapsId`, `@JoinColumn(name = "tutorial_id)`)
+    - One-To-One : E.G. Tutorial (`tutorial`) and TutorialDetails (`tutorial_details`)
+      - The `@PrimaryKeyJoinColumn` tells Hibernate that the primary key for the `tutorial` table will be used as the foreign key in the owning `tutorial_details` table. The `@MapsId` tells Hibernate that the primary key on the `tutorial` table will be used as the primary key for the `tutorial_details` table. Since the primary key is being reused, we don't need to specify `@GenderatedValue` on the `tutorial_details` table.
+      - Approach-1: Foreign Key Association
+      - Approach-2: Join Table
+      - Approach-3: MapsById
+      - Approach-4: Shared PrimaryKey
     - One-To-Many
     - Many-To-One
     - Many-To-Many

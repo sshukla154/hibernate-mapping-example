@@ -1,4 +1,6 @@
-package sshukla.hibernate.onetoone;
+package sshukla.hibernate.onetoone.unidirectional;
+
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +10,11 @@ import java.util.Date;
  * @author 'Seemant Shukla' on '20/09/2022'
  */
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Setter
+@Getter
 @Entity
 @Table(name = "tutorial_details", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 public class TutorialDetails implements Serializable {

@@ -18,7 +18,7 @@ import sshukla.hibernate.service.TutorialService;
 @RestController
 @RequestMapping("/v1/tutorial")
 @Slf4j
-public class TutorialController {
+public class TutorialAndTutorialDetailsController {
 
     @Autowired
     private TutorialService tutorialService;
