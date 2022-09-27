@@ -31,7 +31,11 @@ public class PostAndTagController {
 
     @PostMapping
     public Post createPostAndTag(@RequestBody Post post) {
+        attachTagToPost(post);
+        return postRepository.save(post);
+    }
 
+    private void attachTagToPost(Post post) {
         Set<Tag> tagSet = post.getTagSet();
         System.out.println("Before Processing Tags : " + tagSet);
         Set<Tag> newTagSet = new HashSet<>();
@@ -46,7 +50,6 @@ public class PostAndTagController {
         System.out.println("After Processing Tags : " + newTagSet);
         post.getTagSet().clear();
         post.getTagSet().addAll(newTagSet);
-        return postRepository.save(post);
     }
 
     @GetMapping
@@ -67,4 +70,33 @@ public class PostAndTagController {
     }
 
     //update scenario
+    @PutMapping("/post/{postId}")
+    public Post getPostById(@RequestParam Long postId, @RequestBody Post post) {
+
+        Set<Tag> tagSet = post.getTagSet();
+        System.out.println("Before Processing Tags : " + tagSet);
+        Set<Tag> newTagSet = new HashSet<>();
+        for (Tag tag : tagSet) {
+            String x = tag.getName();
+            Tag findTag = tagRepository.findByName(x);
+            Tag savedTag = findTag == null ? tagRepository.save(tag) : findTag;
+            System.out.println("Saved Tag : " + savedTag.toString());
+            newTagSet.add(savedTag);
+        }
+
+        System.out.println("After Processing Tags : " + newTagSet.toString());
+
+        Post savedPost = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found with id - " + postId));
+        Post updatedPostDetails = Post.builder()
+                .id(savedPost.getId())
+                .content(post.getContent())
+                .description(post.getDescription())
+                .updatedAt(post.getUpdatedAt())
+                .postedAt(post.getPostedAt())
+                .title(post.getTitle())
+                .tagSet(newTagSet)
+                .build();
+        System.out.println("updatedPostDetails : " + updatedPostDetails.toString());
+        return postRepository.save(updatedPostDetails);
+    }
 }

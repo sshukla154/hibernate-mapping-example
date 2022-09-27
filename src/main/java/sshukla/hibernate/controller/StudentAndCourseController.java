@@ -71,16 +71,35 @@ public class StudentAndCourseController {
         studentRepository.deleteById(studentId);
     }
 
-    @Transactional
-    @DeleteMapping("/course/delete/{name}")
-    public void deleteCourseByName(@PathVariable String name) {
-        studentRepository.deleteByName(name);
-    }
-
     @GetMapping("/course/search/{price}")
     public List<Course> findCourseLessThanPrice(@PathVariable double price) {
         return courseRepository.findByFeesLessThan(price);
     }
+
     //update scenario
+    @PutMapping("/student/{studentId}")
+    public Student findCourseLessThanPrice(@PathVariable Long studentId, @RequestBody Student student) {
+        Student savedStudent = studentRepository.findById(studentId).orElseThrow(() -> new RuntimeException("Not found Student with id = " + studentId));
+        Set<Course> courseSet = student.getCourseSet();
+        System.out.println("Before Processing Course : " + courseSet);
+        Set<Course> studentCourseSet = new HashSet<>();
+        for (Course course : courseSet) {
+            String courseTitle = course.getTitle();
+            Course findCourse = courseRepository.findByTitle(courseTitle);
+            Course savedCourse = findCourse == null ? courseRepository.save(course) : findCourse;
+            System.out.println("Saved Course : " + savedCourse.toString());
+            studentCourseSet.add(savedCourse);
+        }
+
+        System.out.println("After Processing Course : " + studentCourseSet);
+        Student updatedStudentDetails = Student.builder()
+                .id(student.getId())
+                .name(student.getName())
+                .age(student.getAge())
+                .department(student.getDepartment())
+                .courseSet(studentCourseSet)
+                .build();
+        return studentRepository.save(updatedStudentDetails);
+    }
 
 }

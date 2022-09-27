@@ -1,7 +1,6 @@
 package sshukla.hibernate.manytomany;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,6 +9,9 @@ import java.util.Set;
  * @author 'Seemant Shukla' on '27/09/2022'
  */
 
+@Setter
+@Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -30,46 +32,6 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "course_id"}))
     private Set<Course> courseSet;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public Set<Course> getCourseSet() {
-        return courseSet;
-    }
-
-    public void setCourseSet(Set<Course> courseSet) {
-        this.courseSet = courseSet;
-    }
 
     @Override
     public String toString() {
