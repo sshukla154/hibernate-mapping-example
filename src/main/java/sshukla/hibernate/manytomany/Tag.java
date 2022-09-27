@@ -1,5 +1,6 @@
 package sshukla.hibernate.manytomany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Tag {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tagSet")
+    @JsonIgnore
     Set<Post> postSet;
 
     @Override

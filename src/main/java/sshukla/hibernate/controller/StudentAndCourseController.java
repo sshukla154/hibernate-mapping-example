@@ -81,5 +81,6 @@ public class StudentAndCourseController {
     public List<Course> findCourseLessThanPrice(@PathVariable double price) {
         return courseRepository.findByFeesLessThan(price);
     }
+    //update scenario
 
 }

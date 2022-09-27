@@ -1,15 +1,14 @@
 package sshukla.hibernate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sshukla.hibernate.manytomany.Post;
 import sshukla.hibernate.manytomany.Tag;
 import sshukla.hibernate.repo.PostRepository;
 import sshukla.hibernate.repo.TagRepository;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -35,7 +34,7 @@ public class PostAndTagController {
 
         Set<Tag> tagSet = post.getTagSet();
         System.out.println("Before Processing Tags : " + tagSet);
-        Set<Tag> newTagSet = post.getTagSet();
+        Set<Tag> newTagSet = new HashSet<>();
         for (Tag tag : tagSet) {
             String x = tag.getName();
             Tag findTag = tagRepository.findByName(x);
@@ -46,8 +45,26 @@ public class PostAndTagController {
 
         System.out.println("After Processing Tags : " + newTagSet);
         post.getTagSet().clear();
-        post.setTagSet(newTagSet);
-
+        post.getTagSet().addAll(newTagSet);
         return postRepository.save(post);
     }
+
+    @GetMapping
+    public List<Post> getAllPost() {
+        return postRepository.findAll();
+    }
+
+    @GetMapping
+    public Post getPostById(@PathVariable Long postId) {
+        return postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found with id - " + postId));
+    }
+
+    @DeleteMapping("/post/{postId}")
+    public void deletePostById(@PathVariable Long postId) {
+        Post savedPost = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found with id - " + postId));
+        savedPost.getTagSet().removeAll(savedPost.getTagSet());
+        postRepository.deleteById(postId);
+    }
+
+    //update scenario
 }
