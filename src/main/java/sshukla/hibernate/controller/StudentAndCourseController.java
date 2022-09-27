@@ -17,7 +17,7 @@ import java.util.Set;
  */
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/sc")
 @Slf4j
 public class StudentAndCourseController {
 

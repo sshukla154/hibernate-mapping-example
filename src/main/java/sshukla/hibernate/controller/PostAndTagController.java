@@ -16,7 +16,7 @@ import java.util.Set;
  */
 
 @RestController
-@RequestMapping("/v1/postandtag")
+@RequestMapping("/v1/st")
 @Slf4j
 public class PostAndTagController {
 
@@ -54,7 +54,7 @@ public class PostAndTagController {
         return postRepository.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/post/{postId}")
     public Post getPostById(@PathVariable Long postId) {
         return postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found with id - " + postId));
     }

@@ -16,7 +16,7 @@ import sshukla.hibernate.service.TutorialService;
  */
 
 @RestController
-@RequestMapping("/v1/tutorial")
+@RequestMapping("/v1/ttd")
 @Slf4j
 public class TutorialAndTutorialDetailsController {
 
