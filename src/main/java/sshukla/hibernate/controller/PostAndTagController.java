@@ -16,7 +16,7 @@ import java.util.Set;
  */
 
 @RestController
-@RequestMapping("/v1/st")
+@RequestMapping("/v1/pt")
 @Slf4j
 public class PostAndTagController {
 

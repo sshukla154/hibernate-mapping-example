@@ -14,7 +14,9 @@
       - Approach-2: Join Table
       - Approach-3: MapsById
       - Approach-4: Shared PrimaryKey
-    - One-To-Many
+    - One-To-Many : One row in a table is mapped to multiple row in another table.
+      - Unidirectional: `@OneToMany` and `@JoinColumn` E.G. One post have many comments.
+      - Bidirectional: `@OneToMany` and `@ManyToOne`
     - Many-To-One
     - Many-To-Many
 2. States in Hibernate
