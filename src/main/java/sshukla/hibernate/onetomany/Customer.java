@@ -24,7 +24,7 @@ public class Customer {
     private String gender;
 
     @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
-    @JoinColumn(name="customer_product_fk", referencedColumnName = "id")
+//    @JoinColumn(name="customer_product_fk", referencedColumnName = "id")
     private List<Product> productList;
 
 }
