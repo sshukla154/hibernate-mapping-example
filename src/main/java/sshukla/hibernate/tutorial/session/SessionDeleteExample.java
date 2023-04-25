@@ -11,17 +11,17 @@ import sshukla.hibernate.tutorial.model.SessionStudent;
 public class SessionDeleteExample {
 
     public void sessionDelete(SessionStudent sessionStudent) {
-        Transaction transaction = null;
-        try (Session session = HibernateJavaConfig.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-//            session.get(1l, sessionStudent);
-            transaction.commit();
-            session.close();
-        } catch (Exception exception) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
+//        Transaction transaction = null;
+//        try (Session session = HibernateJavaConfig.getSessionFactory().openSession()) {
+//            transaction = session.beginTransaction();
+////            session.get(1l, sessionStudent);
+//            transaction.commit();
+//            session.close();
+//        } catch (Exception exception) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//        }
     }
 
 }

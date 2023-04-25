@@ -15,12 +15,12 @@ public class HibernateJavaConfig {
 
     public static SessionFactory getSessionFactory() {
         log.info("HibernateJavaConfig.getSessionFactory() ::::");
-        if (sessionFactory == null) {
-            Configuration configuration = new Configuration().configure();
-            sessionFactory = configuration.buildSessionFactory();
-            log.info("HibernateJavaConfig.getSessionFactory() - Object Created :::: {}", sessionFactory);
-            return sessionFactory;
-        }
+//        if (sessionFactory == null) {
+//            Configuration configuration = new Configuration().configure();
+//            sessionFactory = configuration.buildSessionFactory();
+//            log.info("HibernateJavaConfig.getSessionFactory() - Object Created :::: {}", sessionFactory);
+//            return sessionFactory;
+//        }
         return sessionFactory;
     }
 

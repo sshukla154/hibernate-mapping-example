@@ -11,16 +11,16 @@ import sshukla.hibernate.tutorial.model.SessionStudent;
 public class SessionLoadExample {
 
     public void sessionLoad(SessionStudent sessionStudent) {
-        Transaction transaction = null;
-        try (Session session = HibernateJavaConfig.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-//            session.load(sessionStudent.getId());
-            transaction.commit();
-            session.close();
-        } catch (Exception exception) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
+//        Transaction transaction = null;
+//        try (Session session = HibernateJavaConfig.getSessionFactory().openSession()) {
+//            transaction = session.beginTransaction();
+////            session.load(sessionStudent.getId());
+//            transaction.commit();
+//            session.close();
+//        } catch (Exception exception) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//        }
     }
 }
